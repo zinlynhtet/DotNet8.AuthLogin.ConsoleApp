@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using DotNet8.AuthLogin.ConsoleApp;
+using System.Security.Claims;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 var user = new { Email = "mackk5504@gmail.com", Password = "123" };
+
+app.UseAuthenticationMiddleware();
 
 app.MapPost("/login", async (HttpContext context) =>
 {
