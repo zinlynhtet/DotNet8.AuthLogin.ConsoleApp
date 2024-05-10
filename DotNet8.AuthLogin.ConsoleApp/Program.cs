@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-var user = new { Email = "john@example.com", Password = "password123" };
+var user = new { Email = "mackk5504@gmail.com", Password = "123" };
 
 app.MapPost("/login", async (HttpContext context) =>
 {
@@ -31,7 +31,7 @@ app.MapPost("/login", async (HttpContext context) =>
     }
 });
 
-app.MapGet("/logout", async (HttpContext context) =>
+app.MapGet("/logout", (HttpContext context) =>
 {
     context.Response.Cookies.Delete("auth_token");
 
