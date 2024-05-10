@@ -34,10 +34,15 @@ app.MapPost("/login", async (HttpContext context) =>
     }
 });
 
-app.MapGet("/logout", (HttpContext context) =>
+app.MapPost("/logout", (HttpContext context) =>
 {
-    context.Response.Cookies.Delete("auth_token");
+    var authCookie = context.Request.Cookies["auth_token"];
+    if (string.IsNullOrEmpty(authCookie))
+    {
+        return Results.BadRequest("You need to login first.");
+    }
 
+    context.Response.Cookies.Delete("auth_token");
     return Results.Ok("User logged out successfully.");
 });
 
